@@ -63,7 +63,7 @@ Desafio Tecnológico Itau
 </br>
 <li> Endpoints: </li>
 O arquivo contendo todos as chamadas realizadas no postman se encontra em: 
-https://github.com/JesseSBezerra/todo-list-api/blob/main/todo-list-api(gateway).postman_collection.json
+https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%C3%BA%20Todo%20List%20Api.postman_collection.json
 <p> OBS: para funcionar corretamente será necessário expor as portas no docker-compose </p>
 
 Obs: Após o start do projeto no docker compose demora uns 2 ou 3 minutos para conseguir logar na aplicação
