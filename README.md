@@ -22,7 +22,9 @@ Desafio Tecnológico Itau
 	<a href="https://www.linkedin.com/in/jesse-bezerra-239187a0/"><img src="https://img.icons8.com/bubbles/50/000000/linkedin.png" alt="LinkedIn"/></a>
 </p>
 
-![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.mp4?raw=true)
+![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.gif?raw=true)
+
+
 
 <h3> Usuários de Acesso: </h3>
 <p> Usuario: admin | senha: 12345 | super </p>
