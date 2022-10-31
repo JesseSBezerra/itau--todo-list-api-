@@ -70,6 +70,7 @@ https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%
 <p> OBS: para funcionar é só importar o arquivo acima no postman </p>
 
 Obs: Após o start do projeto no docker compose demora uns 2 ou 3 minutos para conseguir logar na aplicação
-Obs: Cadastrei algumas tasks na base afim de facilitar os testes.
+Obs: Cadastrei algumas tasks na base afim de facilitar os testes, o viculo do usuário ficou implicito na aplicação, buscando o usuário por meio da sessão bem como os endpoins de consulta. A aplicação tem uma cobertura de 100% em todas as classes e a nível de metodo e linha, possui uma cobertura de 72%.
+Para mudar o usuário logado no postman, basta clicar na coleção e ir em "Pré-request Script", deixei o usuário e senha fixo nesse arquivo.
 #
 
