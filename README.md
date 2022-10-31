@@ -65,7 +65,7 @@ Desafio Tecnológico Itau
   <li> Como solicitado a base já vai com um cadastro de usuários pré definido.  
 </br>
 <li> Endpoints: </li>
-O arquivo contendo todos as chamadas realizadas no postman se encontra em: 
+O arquivo contendo todos as chamadas realizadas e uma documentação básica poderá ser visualizado no postman e se encontra em: 
 https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%C3%BA%20Todo%20List%20Api.postman_collection.json
 <p> OBS: para funcionar é só importar o arquivo acima no postman </p>
 
