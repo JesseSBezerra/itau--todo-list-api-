@@ -70,8 +70,30 @@ https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%
 <p> OBS: para funcionar é só importar o arquivo acima no postman </p>
 
 Obs: Após o start do projeto no docker compose demora uns 2 ou 3 minutos para conseguir logar na aplicação
-Obs: Cadastrei algumas tasks na base afim de facilitar os testes, o viculo do usuário ficou implicito na aplicação, buscando o usuário por meio da sessão bem como os endpoins de consulta. A aplicação tem uma cobertura de 100% em todas as classes e a nível de metodo e linha, possui uma cobertura de 72%.
-Para mudar o usuário logado no postman, basta clicar na coleção e ir em "Pré-request Script", deixei o usuário e senha fixo nesse arquivo.
+Obs: Cadastrei algumas tasks na base afim de facilitar os testes.<p> O viculo do usuário ficou implicito na aplicação, buscando o usuário por meio da sessão bem como os endpoins de consulta.</p> <p>A aplicação tem uma cobertura de 100% em todas as classes e a nível de metodo e linha, possui uma cobertura de 72%.
+Para mudar o usuário logado no postman, basta clicar na coleção e ir em "Pré-request Script", deixei o usuário e senha fixo nesse arquivo.</p>
+
+```shell
+pm.sendRequest({
+    url: 'localhost:8000/api/user' + '/auth',
+    method: 'POST',
+    header: {
+        'content-type': 'application/json'
+    },
+    body: {
+        mode: 'raw',
+        raw: JSON.stringify({ 
+            username: 'admin', 
+            password: '12345' })
+    }
+}, function (err, res) {
+    pm.environment.set("auth", "Bearer " + res.json().token);
+});
+```
+
+<p> Por ter uma maior familiaridade optei por utilizar uma base relacional, bem como se em algum momento fossemos pensar em performance, caberia alguns indices nessa tabela. Exemplo do campo TASK_STATUS.</p>
+<p> No arquivo docker-compose deixei a aplicação rodando em 3 nós diferentes, sendo balanceados pelo eureka e acessados pelo api gateway </>
+
 #
 
 Geração do token:
