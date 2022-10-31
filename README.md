@@ -25,6 +25,8 @@ Desafio Tecnológico Itau
 ![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.gif?raw=true)
 	
 <h3> Usuários de Acesso: </h3>
+```
+% localstack status services
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┓ 
 ┃ Usuario                  ┃ senha       ┃ Super      ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩━━━━━━━━━━━━┩
@@ -33,6 +35,8 @@ Desafio Tecnológico Itau
 │ consultant               │ 12345       │ false      │
 │ seller                   │ 12345       │ false      │
 │ user                     │ 12345       │ false      │
+...
+```
 
 <h3> Endpoints: </h3>
 <p> Autenticação: localhost:8765/todo-list-api/api/user/auth | method: POST </p>
