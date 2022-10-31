@@ -74,3 +74,72 @@ Obs: Cadastrei algumas tasks na base afim de facilitar os testes, o viculo do us
 Para mudar o usuário logado no postman, basta clicar na coleção e ir em "Pré-request Script", deixei o usuário e senha fixo nesse arquivo.
 #
 
+Geração do token:
+
+```shell
+curl --location --request POST 'localhost:8765/todo-list-api/api/user/auth' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username":"admin"
+    ,"password":"12345"
+}'
+```
+Listando todas as Tasks:
+
+```shell
+curl --location --request GET 'localhost:8765/todo-list-api/api/task' \
+--header 'Authorization;'
+```
+Listando Tasks por status
+
+```shell
+curl --location --request GET 'localhost:8765/todo-list-api/api/task/status/?status=COMPLETED' \
+--header 'Authorization;'
+```
+
+Criando task
+
+```shell
+curl --location --request POST 'localhost:8765/todo-list-api/api/task' \
+--header 'Authorization;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+     "description": "task de testes"
+    ,"summary": "teste"
+    ,"status": "PENDING"
+    ,"updatedAt":null
+    ,"createdAt":null
+}'
+```
+
+Atualizando a task
+
+```shell
+curl --location --request PUT 'localhost:8765/todo-list-api/api/task/19' \
+--header 'Authorization;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+      "user": {
+            "id": 3,
+            "userName": "consultant"
+        },
+        "description": "Atividade de consultoria 08",
+        "summary": "teste",
+        "updatedAt": null,
+        "createdAt": "2022-10-30T19:01:35",
+        "status": "COMPLETED"
+}'
+```
+
+Removendo a Task
+```shell
+curl --location --request DELETE 'localhost:8765/todo-list-api/api/task/19' \
+--header 'Authorization;'
+```
+O token será gerado nesse padrão, sendo necessário concatenar com padrão: Bearer + valor re retorno do token
+```shell
+{
+    "login": "admin",
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2NzE4OTQ3Mn0.bm6kWx8O4DTPXZwq_ezBYDDQ935RnSoiDKUZzayPUodySFscaeUYN1WFmwooFMTsRrn3Le4wFJ8jccfRvvU5YQ"
+}
+```
