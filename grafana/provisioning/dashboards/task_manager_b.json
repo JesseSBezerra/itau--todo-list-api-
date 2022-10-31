@@ -1,0 +1,233 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "Prometheus",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "links": [],
+  "panels": [
+    {
+      "datasource": "Prometheus",
+      "description": "Task Count Get",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 5,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "7.4.1",
+      "targets": [
+        {
+          "expr": "http_server_requests_seconds_count{job=\"todo-list-api\", uri=\"/api/task/status\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/status"
+        },
+        {
+          "expr": "http_server_requests_seconds_count{job=\"todo-list-api\", uri=\"/api/task\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/all"
+        },
+        {
+          "expr": "http_server_requests_seconds_count{job=\"todo-list-api\", method=\"DELETE\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/delete"
+        },
+        {
+          "expr": "http_server_requests_seconds_count{job=\"todo-list-api\", method=\"PUT\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/update"
+        }
+      ],
+      "title": "Task Event Count",
+      "type": "gauge"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 5,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.4.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "http_server_requests_seconds_max{job=\"todo-list-api\", method=\"POST\",uri=\"/api/task\"}\r",
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/create"
+        },
+        {
+          "expr": "http_server_requests_seconds_max{job=\"todo-list-api\", method=\"PUT\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/update"
+        },
+        {
+          "expr": "http_server_requests_seconds_max{job=\"todo-list-api\", method=\"GET\",uri=\"/api/task\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/find"
+        },
+        {
+          "expr": "http_server_requests_seconds_max{job=\"todo-list-api\", method=\"DELETE\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{method}}/{{outcome}}/{{status}}",
+          "refId": "/task/delete"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Task Time",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Task Manager",
+  "uid": "JZ177yNVz",
+  "version": 1
+}

@@ -1,0 +1,14 @@
+global:
+  scrape_interval:     15s 
+  
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'todo-list-api'
+    scrape_interval: 5s
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+        - targets: ['todo-list-api:8000','todo-list-api-2:8001','todo-list-api-3:8002']    

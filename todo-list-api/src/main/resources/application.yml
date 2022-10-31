@@ -1,0 +1,43 @@
+server:
+  port: ${PORT:8000}
+spring:
+  datasource:
+    url: jdbc:tracing:mysql://${MYSQL_URL:localhost:3306}/todolist_hml?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=utf-8&useTimezone=true&serverTimezone=America/Sao_Paulo
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: io.opentracing.contrib.jdbc.TracingDriver
+  jpa:
+    hibernate:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+  application:
+    name: todo-list-api
+
+  flyway:
+    validate-on-migrate: false
+    placeholderReplacement: false
+    baseline-on-migrate: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
+
+security:
+  jwt:
+    timeExpire: 5
+    secretKey: ${JWT_SECRET_KEY:YW1vIHRyYWJhbGhhciBuYSBtdg==}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+
+opentracing:
+  jaeger:
+    service-name: todo-list-api
+    udp-sender:
+      host: ${JAEGER_URL:localhost}
+      port: 6831
+    sampler-type: const
+    sampler-param: 1

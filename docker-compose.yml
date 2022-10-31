@@ -1,0 +1,140 @@
+version: '3.4'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.39.1
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - projeto-itau      
+  
+  grafana:
+    image: grafana/grafana:7.4.1
+    container_name: grafana
+    ports:
+      - 3000:3000
+    networks:
+      - projeto-itau 
+    volumes:
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - grafana-data:/var/lib/grafana
+  
+  db:
+    container_name: mysql8.2
+    image: mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+      - 3306:3306
+    networks:
+      -  projeto-itau  
+    volumes:
+      - './docker/db/data:/var/lib/mysql'
+      - './docker/db/my.cnf:/etc/mysql/conf.d/my.cnf'
+      - './docker/db/sql:/docker-entrypoint-initdb.d'
+  
+  eureka-server:
+    image: jessebezerra/eureka-server:1.0.0
+    ports:
+      - 8761:8761
+    networks:
+      -  projeto-itau
+
+  gateway-api:
+    image: jessebezerra/gateway-api:1.0.2
+    depends_on:
+      - eureka-server
+    ports:
+      - 8765:8765    
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    networks:
+      - projeto-itau             
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.21
+    container_name: jaeger
+    networks:
+      - projeto-itau    
+    ports:
+      - 5775:5775/udp
+      - 6831:6831/udp
+      - 6832:6832/udp
+      - 5778:5778
+      - 16686:16686
+      - 14268:14268
+      - 14250:14250
+      - 9411:9411
+
+  todo-list-api:
+    image: jessebezerra/todo-list-api:1.0.0
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - eureka-server 
+      - jaeger   
+    networks:
+      - projeto-itau
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - MYSQL_URL=db:3306
+      - MYSQL_USER=root 
+      - MYSQL_PASSWORD=root 
+      - JAEGER_URL=jaeger
+      - PORT=8000 
+
+  todo-list-api-2:
+    image: jessebezerra/todo-list-api:1.0.0
+    ports:
+      - 8001:8001
+    depends_on:
+      - db
+      - eureka-server 
+      - jaeger   
+    networks:
+      - projeto-itau
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - MYSQL_URL=db:3306
+      - MYSQL_USER=root 
+      - MYSQL_PASSWORD=root 
+      - JAEGER_URL=jaeger
+      - PORT=8001 
+
+  todo-list-api-3:
+    image: jessebezerra/todo-list-api:1.0.0
+    ports:
+      - 8002:8002
+    depends_on:
+      - db
+      - eureka-server 
+      - jaeger   
+    networks:
+      - projeto-itau
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka
+      - MYSQL_URL=db:3306
+      - MYSQL_USER=root 
+      - MYSQL_PASSWORD=root 
+      - JAEGER_URL=jaeger
+      - PORT=8002     
+
+  
+
+     
+
+networks:
+  projeto-itau:
+    driver: bridge  
+volumes:
+  dbdata:
+  grafana-data:  
