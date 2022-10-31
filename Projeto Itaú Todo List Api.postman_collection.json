@@ -27,7 +27,8 @@
 						"api",
 						"task"
 					]
-				}
+				},
+				"description": "Chamada de todas as tasks, ordenando por status, prioriza inicialmente o status PENDING.\nSe consultar com super user consegue visualizar de todos."
 			},
 			"response": []
 		},
@@ -61,7 +62,8 @@
 							"value": "COMPLETED"
 						}
 					]
-				}
+				},
+				"description": "Filtra por status\nSe consultar com super user consegue visualizar de todos."
 			},
 			"response": []
 		},
@@ -96,7 +98,8 @@
 						"api",
 						"task"
 					]
-				}
+				},
+				"description": "Cria uma task."
 			},
 			"response": []
 		},
@@ -132,7 +135,8 @@
 						"task",
 						"13"
 					]
-				}
+				},
+				"description": "Atualiza a task"
 			},
 			"response": []
 		},
@@ -159,7 +163,8 @@
 						"task",
 						"12"
 					]
-				}
+				},
+				"description": "Remove a task"
 			},
 			"response": []
 		},
@@ -209,7 +214,8 @@
 						"user",
 						"auth"
 					]
-				}
+				},
+				"description": "Realiza a geração do token"
 			},
 			"response": []
 		}
