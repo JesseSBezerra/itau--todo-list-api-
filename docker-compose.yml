@@ -84,6 +84,7 @@ services:
       - jaeger   
     networks:
       - projeto-itau
+    restart: on-failure   
     environment:
       - EUREKA_URL=http://eureka-server:8761/eureka
       - MYSQL_URL=db:3306
@@ -99,7 +100,8 @@ services:
     depends_on:
       - db
       - eureka-server 
-      - jaeger   
+      - jaeger
+    restart: on-failure      
     networks:
       - projeto-itau
     environment:
@@ -117,7 +119,8 @@ services:
     depends_on:
       - db
       - eureka-server 
-      - jaeger   
+      - jaeger
+    restart: on-failure     
     networks:
       - projeto-itau
     environment:
