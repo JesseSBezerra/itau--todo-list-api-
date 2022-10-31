@@ -23,6 +23,9 @@ Desafio Tecnológico Itau
 </p>
 
 ![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.gif?raw=true)
+
+<h3 align="center"> Execução: </h3>
+A api poderá ser executada através do arquivo docker-compose, que se encontra na raiz do projeto.
 	
 <h3 align="center"> Usuários de Acesso: </h3>
 <p> Usuario: admin | senha: 12345 | super </p>
