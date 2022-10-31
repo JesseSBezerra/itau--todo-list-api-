@@ -61,6 +61,9 @@ Desafio Tecnológico Itau
 <li> Mockito </li>
 <li> JavaScript </li>
 <li> Mysql </li>
+<li> Grafana </li>
+<li> Prometheus </li>
+<li> Jaeger </li>
 </br>
   OBS: Deixei as portas das apis exposta.
   <li> A aplicação roda na porta 8765
@@ -72,6 +75,6 @@ https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%
 <p> OBS: para funcionar é só importar o arquivo acima no postman </p>
 
 Obs: Após o start do projeto no docker compose demora uns 2 ou 3 minutos para conseguir logar na aplicação
-Obs: Castrei algumas tasks na base afim de facilitar os testes.
+Obs: Cadastrei algumas tasks na base afim de facilitar os testes.
 #
 
