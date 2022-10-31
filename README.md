@@ -22,16 +22,16 @@ Desafio Tecnológico Itau
 	<a href="https://www.linkedin.com/in/jesse-bezerra-239187a0/"><img src="https://img.icons8.com/bubbles/50/000000/linkedin.png" alt="LinkedIn"/></a>
 </p>
 
-![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.mp4?raw=true)
-
-<h3> Usuários de Acesso: </h3>
+![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.gif?raw=true)
+	
+<h3 align="center"> Usuários de Acesso: </h3>
 <p> Usuario: admin | senha: 12345 | super </p>
 <p> Usuario: registration | senha: 12345 | normal </p>
 <p> Usuario: consultant | senha: 12345 | normal </p>
 <p> Usuario: seller | senha: 12345 | normal </p>
 <p> Usuario: user | senha: 12345 | normal </p>
 
-<h3> Endpoints: </h3>
+<h3 align="center"> Endpoints: </h3>
 <p> Autenticação: localhost:8765/todo-list-api/api/user/auth | method: POST </p>
 <p> Criação de Task: localhost:8765/todo-list-api/api/task | method: POST </p>
 <p> Todas as Tasks do Usuário (Ordena por Status) : localhost:8765/todo-list-api/api/task | method: GET </p>
@@ -58,9 +58,10 @@ Desafio Tecnológico Itau
 <li> Mockito </li>
 <li> JavaScript </li>
 <li> Mysql </li>
+<li> Grafana </li>
+<li> Prometheus </li>
+<li> Jaeger </li>
 </br>
-  OBS: Deixei as portas das apis exposta.
-  <li> A aplicação roda na porta 8765
   <li> Como solicitado a base já vai com um cadastro de usuários pré definido.  
 </br>
 <li> Endpoints: </li>
@@ -69,6 +70,76 @@ https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/Projeto%20Ita%
 <p> OBS: para funcionar é só importar o arquivo acima no postman </p>
 
 Obs: Após o start do projeto no docker compose demora uns 2 ou 3 minutos para conseguir logar na aplicação
-Obs: Castrei algumas tasks na base afim de facilitar os testes.
+Obs: Cadastrei algumas tasks na base afim de facilitar os testes, o viculo do usuário ficou implicito na aplicação, buscando o usuário por meio da sessão bem como os endpoins de consulta. A aplicação tem uma cobertura de 100% em todas as classes e a nível de metodo e linha, possui uma cobertura de 72%.
+Para mudar o usuário logado no postman, basta clicar na coleção e ir em "Pré-request Script", deixei o usuário e senha fixo nesse arquivo.
 #
 
+Geração do token:
+
+```shell
+curl --location --request POST 'localhost:8765/todo-list-api/api/user/auth' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username":"admin"
+    ,"password":"12345"
+}'
+```
+Listando todas as Tasks:
+
+```shell
+curl --location --request GET 'localhost:8765/todo-list-api/api/task' \
+--header 'Authorization;'
+```
+Listando Tasks por status
+
+```shell
+curl --location --request GET 'localhost:8765/todo-list-api/api/task/status/?status=COMPLETED' \
+--header 'Authorization;'
+```
+
+Criando task
+
+```shell
+curl --location --request POST 'localhost:8765/todo-list-api/api/task' \
+--header 'Authorization;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+     "description": "task de testes"
+    ,"summary": "teste"
+    ,"status": "PENDING"
+    ,"updatedAt":null
+    ,"createdAt":null
+}'
+```
+
+Atualizando a task
+
+```shell
+curl --location --request PUT 'localhost:8765/todo-list-api/api/task/19' \
+--header 'Authorization;' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+      "user": {
+            "id": 3,
+            "userName": "consultant"
+        },
+        "description": "Atividade de consultoria 08",
+        "summary": "teste",
+        "updatedAt": null,
+        "createdAt": "2022-10-30T19:01:35",
+        "status": "COMPLETED"
+}'
+```
+
+Removendo a Task
+```shell
+curl --location --request DELETE 'localhost:8765/todo-list-api/api/task/19' \
+--header 'Authorization;'
+```
+O token será gerado nesse padrão, sendo necessário concatenar com padrão: Bearer + valor re retorno do token
+```shell
+{
+    "login": "admin",
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTY2NzE4OTQ3Mn0.bm6kWx8O4DTPXZwq_ezBYDDQ935RnSoiDKUZzayPUodySFscaeUYN1WFmwooFMTsRrn3Le4wFJ8jccfRvvU5YQ"
+}
+```
