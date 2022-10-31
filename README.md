@@ -24,21 +24,14 @@ Desafio Tecnológico Itau
 
 ![Logo do Markdown](https://github.com/JesseSBezerra/itau--todo-list-api-/blob/master/TodoListApi.gif?raw=true)
 	
-<h3> Usuários de Acesso: </h3>
-```
-% localstack status services
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━┓ 
-┃ Usuario                  ┃ senha       ┃ Super      ┃
-┡━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━┩━━━━━━━━━━━━┩
-│ admin                    │ 12345       │ true       │
-│ registration             │ 12345       │ false      │
-│ consultant               │ 12345       │ false      │
-│ seller                   │ 12345       │ false      │
-│ user                     │ 12345       │ false      │
-...
-```
+<h3 align="center"> Usuários de Acesso: </h3>
+<p> Usuario: admin | senha: 12345 | super </p>
+<p> Usuario: registration | senha: 12345 | normal </p>
+<p> Usuario: consultant | senha: 12345 | normal </p>
+<p> Usuario: seller | senha: 12345 | normal </p>
+<p> Usuario: user | senha: 12345 | normal </p>
 
-<h3> Endpoints: </h3>
+<h3 align="center"> Endpoints: </h3>
 <p> Autenticação: localhost:8765/todo-list-api/api/user/auth | method: POST </p>
 <p> Criação de Task: localhost:8765/todo-list-api/api/task | method: POST </p>
 <p> Todas as Tasks do Usuário (Ordena por Status) : localhost:8765/todo-list-api/api/task | method: GET </p>
@@ -69,8 +62,6 @@ Desafio Tecnológico Itau
 <li> Prometheus </li>
 <li> Jaeger </li>
 </br>
-  OBS: Deixei as portas das apis exposta.
-  <li> A aplicação roda na porta 8765
   <li> Como solicitado a base já vai com um cadastro de usuários pré definido.  
 </br>
 <li> Endpoints: </li>
