@@ -153,7 +153,6 @@ class TaskServiceImplTest {
         when(mapper.map(any(), any())).thenReturn(task);
         when(repository.findByIdAndUser(anyLong(),any())).thenReturn(optionalTask);
         when(repository.save(any())).thenReturn(task);
-        /*
         var response = service.update(taskDTO);
         assertNotNull(response);
         assertEquals(ID, task.getId());
@@ -162,8 +161,6 @@ class TaskServiceImplTest {
         assertEquals(DESCRIPTION,task.getDescription());
         assertEquals(NOW,task.getUpdatedAt());
         assertEquals(TaskStatus.PENDING,task.getStatus());
-
-         */
 
     }
 
